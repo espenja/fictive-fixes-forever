@@ -2,4 +2,5 @@
   <Script file="TooltipPriceDifference.lua"/>
   <Script file="CombatNotifications.lua"/>
   <Script file="BagValue.lua"/>
+  <Script file="GearDeals.lua"/>
 </Ui>

@@ -43,9 +43,10 @@ still works and the module reports that its integration is inactive.
 Combat notifications
 --------------------
 Enabled by default. Entering combat shows red "+Combat" text; leaving combat
-shows green "-Combat" text. The outlined text starts just above screen center,
-scrolls downward 110 UI units over 3 seconds, stays fully visible for the first 1.5 seconds,
-then fades out over the remaining 1.5 seconds. It does not intercept clicks.
+shows green "-Combat" text. The outlined text starts 140 UI units above screen
+center and scrolls downward 110 UI units over 3 seconds, staying above center
+throughout. It stays fully visible for 1.5 seconds, then fades out over the
+remaining 1.5 seconds. It does not intercept clicks.
 Rapid transitions replace the current message and restart the animation, rather
 than stacking overlapping messages. Enabling the module does not emit a message
 until the next combat transition.
@@ -92,6 +93,43 @@ Both newer personal bank tabs and older bank bags are supported; they are not
 counted together. Equipped bags, equipped gear, mail, auctions already posted,
 guild banks, warband/account banks, and other characters are excluded.
 Disable the panel under /fff > Modules > Bag + bank value.
+
+Gear Deals
+----------
+After /reload, run an Auctionator full scan with Gear Deals enabled, then
+type /fffgear or open it under /fff > Modules > Gear Deals. The latest full
+scan is saved per character; opening Gear Deals never runs a scan. Both the
+default summary scan and listing scans are supported. If a scan completed
+before Gear Deals could capture it, run another one; older price history
+cannot reconstruct its results.
+
+Gear Deals uses an opaque, textured background for readability.
+
+Search by name, item-level range, gear type, and maximum loss in gold
+(0.25 = 25s). Check multiple options under Weapon types, Gear slots and
+groups, or Other gear types. For example, check Axes and Swords to see
+either type. Gear matches any checked option across the three menus, then
+must pass the other filters. Clear gear removes these selections without
+resetting the other filters.
+
+The available gear options and stats come from the scan. Select multiple
+stats and choose whether gear must have any or all of them. Stats that the
+client does not expose as item stats (such as some tooltip effects) cannot
+be filtered.
+The level fields filter the gear's item level, not the character level needed
+to equip it. Missing item data is requested; click Search again once it loads.
+Results are ordered by auction price minus vendor sell value, lowest first.
+Listing scans show total buyouts and vendor values for the whole listing,
+keeping the cheapest buyout for each exact item link and quantity.
+Summary scans show a minimum per-item price, not a specific listing. If a
+variant cannot be resolved, its vendor estimate is labeled "Base vendor";
+base stats are not used to filter an unresolved suffix or item-level variant.
+
+Use Add to list to save leads and Shopping list to review or remove them.
+The list persists per character across reloads and scans. A saved lead keeps
+its original prices and scan time; always verify the current listing before
+shopping. Purchases happen manually in another addon: Gear Deals does not
+send auction searches, place bids, buy items, or push items to other addons.
 
 Adding a feature
 ----------------
@@ -174,6 +212,7 @@ With Node.js, the local Auctionator addon, and an existing Fengari installation:
   node Tests\TooltipPriceDifference.test.cjs <path-to-installed-fengari-package>
   node Tests\CombatNotifications.test.cjs <path-to-installed-fengari-package>
   node Tests\BagValue.test.cjs <path-to-installed-fengari-package>
+  node Tests\GearDeals.test.cjs <path-to-installed-fengari-package>
 The package path can be omitted if Node can resolve "fengari" directly.
 Tooltip tests execute Auctionator's actual tooltip functions and money/count
 formatters. Combat tests check event-driven messages, animation setup/restarts,

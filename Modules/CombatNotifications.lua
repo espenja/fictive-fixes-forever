@@ -20,7 +20,7 @@ end
 function Module:CreateDisplay()
   local frame = CreateFrame("Frame", nil, UIParent)
   frame:SetSize(300, 50)
-  frame:SetPoint("CENTER", UIParent, "CENTER", 0, 100)
+  frame:SetPoint("CENTER", UIParent, "CENTER", 0, 140)
   frame:SetFrameStrata("HIGH")
   frame:EnableMouse(false)
   frame:Hide()

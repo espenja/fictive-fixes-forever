@@ -95,6 +95,9 @@ try {
     local scroll = Module.animation.animations.Translation
     local fade = Module.animation.animations.Alpha
     assert(scroll.y < 0 and scroll.x == 0, "Text must scroll vertically downward")
+    local anchor = Module.frame.point
+    assert(anchor[2] == UIParent and anchor[3] == "CENTER" and anchor[5] + scroll.y > 0,
+      "Text must stay above screen center throughout its downward travel")
     assert(fade.from == 1 and fade.to == 0, "Text must fade out")
     assert(scroll.order == fade.order, "Scroll and fade must run concurrently")
     assert(math.abs(scroll.duration - fade.delay - fade.duration) < 0.00001)
