@@ -1,0 +1,13 @@
+## Interface: 120100, 120105, 16001, 50504, 38001, 20506, 11509
+## Title: FictiveFixesForever
+## Notes: A personal collection of small fixes and useful features.
+## Version: 0.1.0
+## OptionalDeps: Ace3, Auctionator, Baganator, Syndicator
+## SavedVariables: FictiveFixesForeverDB
+
+Libs\embeds.xml
+
+Core\Initialize.lua
+Core\Options.lua
+
+Modules\Modules.xml
